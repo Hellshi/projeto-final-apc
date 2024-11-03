@@ -18,22 +18,11 @@ class Livro:
             self.estoque.adicionar_linha({'isbn': isbn, 'nome': produto, 'quantidade': quantidade, 'valor': valor})
 
     def excluir(self):
-        produto = input('informe o isbn do produto, essa ação deletará todos os registros: ')
-        if not produto in self.estoque:
-            print("Produto não encontrado!")
-            return
-        
-        del self.estoque[produto]
-        print("Produto excluido com sucesso!")
-    
-    def listar(self):
-        produtos = self.estoque.keys()
-        total = 0
-        for i in produtos:
-            produto = self.estoque[i]
-            totalEstoque = produto['quantidade'] * produto['valorUnitario']
+        isbn = input('informe o ISBN: ')
+        self.estoque.buscar_em_arquivo('isbn', isbn)
 
-            print("{} {} x R${:.2f} = R${:.2f}".format(i, produto['quantidade'], produto['valorUnitario'], totalEstoque))
-            total += totalEstoque
-
-        print("Total: R${:.2f}".format(total))
+        if(isbn in self.estoque):
+            quantidade = int(input('Informe a quantidade a ser removida: '))
+            self.estoque.atualizar_livro(isbn, 'quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] -  quantidade)
+        else:
+            print('Livro nao cadastrado')
