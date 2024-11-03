@@ -1,5 +1,5 @@
 #matrícula: 202435058
-class Produto:
+class Livro:
     def __init__(self):
         self._compras = []
         self.estoque = {}
@@ -45,7 +45,7 @@ class Produto:
                 exit(1)
 
 
-classeCompras = Produto()
+classeCompras = Livro()
 
 while True:
     operacao = input('Escolha uma operação: INSERIR, REMOVER, LISTAR, SAIR: ')
