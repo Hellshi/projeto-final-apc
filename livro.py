@@ -10,12 +10,15 @@ class Livro:
         if(book != None):
             quantidade = int(input(f"O livro {book['Nome']} já está cadastrado no estoque com {book['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
             self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
+            print(f'Quantidade de {book["Nome"]} atualizada para {book["Quantidade"] + quantidade}')
         else:
             produto = input('Informe o nome do livro: ')
             valor = float(input('Informe o valor do Livro: '))
             quantidade = int(input('Informe a quantidade: '))
 
             self.estoque.adicionar_linha({'ISBN': isbn, 'Nome': produto, 'Quantidade': quantidade, 'Valor': valor})
+
+            print('Livro {produto} adicionado ao estoque')
 
     def excluir(self):
         isbn = input('informe o ISBN: ')
