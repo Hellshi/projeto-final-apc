@@ -4,8 +4,9 @@ class Livro:
         self.estoque = GerenciadorDeArquivos('estoque/estoque.csv')
 
     def inserir(self):
-        isbn = input('informe o ISBN: ')
-        self.estoque.buscar_em_arquivo('isbn', isbn)
+        isbn = int(input('informe o ISBN: '))
+        book = self.estoque.buscar_em_arquivo('ISBN', isbn)
+        print(book)
 
         if(isbn in self.estoque):
             quantidade = int(input('Esse livro já está cadastrado no sistema, por favor, informe a quantidade a ser adicionada: '))
