@@ -22,11 +22,15 @@ class Livro:
 
     def excluir(self):
         isbn = input('informe o ISBN: ')
-        self.estoque.buscar_em_arquivo('isbn', isbn)
+        book = self.buscar_livro('ISBN', isbn)
 
-        if(isbn in self.estoque):
+        if(book != None):
             quantidade = int(input('Informe a quantidade a ser removida: '))
-            self.estoque.atualizar_livro(isbn, 'quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] -  quantidade)
+            if(quantidade > book['Quantidade']):
+                print('Quantidade maior que a existente, operação abortada')
+                return
+            else:
+                self.estoque.atualizar_livro(isbn, 'Quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] -  quantidade)
         else:
             print('Livro nao cadastrado')
     
