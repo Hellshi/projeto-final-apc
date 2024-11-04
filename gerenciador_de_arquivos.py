@@ -10,7 +10,8 @@ class GerenciadorDeArquivos:
         self.arquivo.to_csv(self.path, index=False)
     
     def adicionar_linha(self, linha):
-        self.arquivo = self.arquivo.append(linha, ignore_index=True)
+        nova_linha_df = pd.DataFrame([linha])
+        self.arquivo = pd.concat([self.arquivo, nova_linha_df], ignore_index=True)
         self.atualizar_arquivo()
     
     def exibir_arquivo(self):

@@ -32,4 +32,4 @@ class Livro:
         if len(item) > 0:
             return [item.iloc[0].to_dict(), item.index[0]]
         else:
-            return
+            return [None, None]
