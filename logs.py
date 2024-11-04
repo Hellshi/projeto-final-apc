@@ -5,5 +5,5 @@ class Logs:
         self.relatorios = GerenciadorDeArquivos('relatorios/relatorios.csv')
     
 
-    def log_de_atividade(self, tipo_de_atividade, isbn, quantidade):
-        self.relatorios.adicionar_linha({'tipo_de_atividade': tipo_de_atividade, 'isbn': isbn, 'quantidade': quantidade})
+    def log_emprestimo(self, cpf, isbn, quantidade):
+        self.relatorios.adicionar_linha({'cpf': cpf, 'isbn': isbn, 'quantidade': quantidade, 'tipo_de_atividade': 'Emprestimo'})
