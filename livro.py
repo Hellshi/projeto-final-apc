@@ -5,18 +5,17 @@ class Livro:
 
     def inserir(self):
         isbn = int(input('informe o ISBN: '))
-        book = self.estoque.buscar_em_arquivo('ISBN', isbn)
-        print(book)
+        book, index = self.buscar_livro(isbn)
 
-        if(isbn in self.estoque):
-            quantidade = int(input('Esse livro já está cadastrado no sistema, por favor, informe a quantidade a ser adicionada: '))
-            self.estoque.atualizar_livro(isbn, 'quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] + quantidade)
+        if(book != None):
+            quantidade = int(input(f"O livro {book['Nome']} já está cadastrado no estoque com {book['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
+            self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
         else:
             produto = input('Informe o nome do livro: ')
             valor = float(input('Informe o valor do Livro: '))
             quantidade = int(input('Informe a quantidade: '))
 
-            self.estoque.adicionar_linha({'isbn': isbn, 'nome': produto, 'quantidade': quantidade, 'valor': valor})
+            self.estoque.adicionar_linha({'ISBN': isbn, 'Nome': produto, 'Quantidade': quantidade, 'Valor': valor})
 
     def excluir(self):
         isbn = input('informe o ISBN: ')
@@ -27,3 +26,10 @@ class Livro:
             self.estoque.atualizar_livro(isbn, 'quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] -  quantidade)
         else:
             print('Livro nao cadastrado')
+    
+    def buscar_livro(self, isbn):
+        item = self.estoque.buscar_em_arquivo('ISBN', isbn)
+        if len(item) > 0:
+            return [item.iloc[0].to_dict(), item.index[0]]
+        else:
+            return

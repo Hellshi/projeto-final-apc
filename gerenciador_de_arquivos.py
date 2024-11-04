@@ -3,10 +3,11 @@ import pandas as pd
 class GerenciadorDeArquivos:
     def __init__(self, nome_arquivo):
         self.arquivo = pd.read_csv(nome_arquivo)
-        "self.atualizar_arquivo()"
+        self.path = nome_arquivo
+        self.atualizar_arquivo()
 
     def atualizar_arquivo(self):
-        self.arquivo.to_csv(self.arquivo, index=False)
+        self.arquivo.to_csv(self.path, index=False)
     
     def adicionar_linha(self, linha):
         self.arquivo = self.arquivo.append(linha, ignore_index=True)
@@ -16,12 +17,9 @@ class GerenciadorDeArquivos:
         print(self.arquivo)
     
     def buscar_em_arquivo(self, coluna, valor):
-        item = self.arquivo.loc[self.arquivo[f"{coluna}"] == valor]
-        if len(item) > 0:
-            return item.iloc[0].to_dict()
-        else:
-            return
-    
+        return self.arquivo.loc[self.arquivo[f"{coluna}"] == valor]
+
     def atualizar_livro(self, linha, coluna, valor):
+        self.buscar_em_arquivo(coluna, linha)
         self.arquivo.at[linha, coluna] = valor
         self.atualizar_arquivo()
