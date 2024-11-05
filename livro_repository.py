@@ -10,10 +10,10 @@ class LivroRepository:
         self.baseRepository.adicionar_linha({'ISBN': livro['ISBN'], 'Nome': livro['Nome'], 'Quantidade': livro['Quantidade'], 'Valor': livro['Valor']})
 
     def atualizar(self, livro):
-        self.baseRepository.atualizar_livro(livro.index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', livro.ISBN)['Quantidade'] + livro.Quantidade)
+        self.baseRepository.atualizar_livro(livro['index'], 'Quantidade', livro['Quantidade'])
 
-    def remover(livro):
-        pass
+    def remover(self, livro):
+        self.baseRepository.atualizar_livro(livro['index'], 'Quantidade', self.baseRepository.buscar_em_arquivo('ISBN', livro['ISBN'])['Quantidade'] - livro['Quantidade'])
 
     def buscar_livro(self, isbn):
         item = self.baseRepository.buscar_em_arquivo('ISBN', isbn)
@@ -23,12 +23,6 @@ class LivroRepository:
         else:
             return [None, None]
 
-    def consultar(self):
-        isbn = int(input('informe o ISBN: '))
+    def consultar(self, isbn):
         item = self.baseRepository.buscar_em_arquivo('ISBN', isbn)
-        book = item.iloc[0]
-
-        if(len(book) != None):
-            print(book)
-        else:
-            print('Livro nao cadastrado')
+        return item.iloc[0]

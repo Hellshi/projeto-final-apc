@@ -19,10 +19,11 @@ class Livro:
         self.livro = {'ISBN': isbn, 'Nome': None, 'Quantidade': None, 'Valor': None, 'index': index}
 
         if(book != None):
-            quantidade = int(input(f"O livro {self.livro['Nome']} já está cadastrado no estoque com {self.livro['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
-            self.livro['Quantidade'] += quantidade
-            self.livroRepository.atualizar(self.livro)
-            print(f'Quantidade de {self.livro["Nome"]} atualizada para {self.livro["Quantidade"]}')
+            self.livro['Quantidade'] = book['Quantidade']
+            self.livro['Nome'] = book['Nome']
+            self.livro['Valor'] = book['Valor']
+            self.livro['index'] = index
+            self.atualizar()
         else:
             self.livro['Nome'] = input('Informe o nome do livro: ')
             self.livro['Valor'] = float(input('Informe o valor do Livro: '))
@@ -35,7 +36,7 @@ class Livro:
 
     def excluir(self):
         isbn = int(input('informe o ISBN: '))
-        book, index = self.buscar_livro(isbn)
+        book, index = self.livroRepository.buscar_livro(isbn)
         
         if(book != None):
             quantidade = int(input('Informe a quantidade a ser removida: '))
@@ -43,26 +44,28 @@ class Livro:
                 print('Quantidade maior que a existente, operação abortada')
                 return
             else:
+                self.livro['Quantidade'] = quantidade
+                self.livro['ISBN'] = book['ISBN']
+                self.livro['index'] = index
+
                 motivo = input('Informe o motivo da exclusão: ')
-                self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
-                self.logs.log_de_gestao_de_livros(motivo, isbn, quantidade, 'Exclusão')
+                self.livroRepository.remover(self.livro)
+                
+                self.logs.log_de_gestao_de_livros(motivo, isbn, book['Quantidade'] - quantidade, 'Exclusão')
                 print(f'Quantidade de {book["Nome"]} atualizada para {book["Quantidade"] - quantidade}')
         else:
             print('Livro nao cadastrado')
     
-    def buscar_livro(self, isbn):
-        item = self.estoque.buscar_em_arquivo('ISBN', isbn)
-
-        if len(item) > 0:
-            return [item.iloc[0].to_dict(), item.index[0]]
-        else:
-            return [None, None]
+    def atualizar(self):
+        quantidade = int(input(f"O livro {self.livro['Nome']} já está cadastrado no estoque com {self.livro['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
+        self.livro['Quantidade'] += quantidade
+        self.livroRepository.atualizar(self.livro)
+        print(f'Quantidade de {self.livro["Nome"]} atualizada para {self.livro["Quantidade"]}')
         
     def consultar(self):
         isbn = int(input('informe o ISBN: '))
-        item = self.estoque.buscar_em_arquivo('ISBN', isbn)
-        book = item.iloc[0]
-
+        book = self.livroRepository.consultar(isbn)
+    
         if(len(book) != None):
             print(book)
         else:
