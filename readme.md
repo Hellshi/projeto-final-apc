@@ -6,6 +6,14 @@ Motivação: Um projeto simples para gestão da sua biblioteca via terminal, ele
 - inquirerPy
 - openpyxl
 
+## Versões testadas e suportadas durante o desenvolvimento:
+- Python 3.8.x
+- Python 3.10.12
+
+## OS Testados e suportados durante o desenvolvimento:
+- POP OS
+- Ubunto
+
 [Slide](https://docs.google.com/presentation/d/1cDxPRtD__nOhZxZq4jcyOx6O55AVTfpwlqXQCAdJuIU/edit?usp=sharing)
 
 ## Regras de Negócio:
