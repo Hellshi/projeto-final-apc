@@ -12,8 +12,11 @@ class Relatorios_Repository:
             self.estoque = pd.DataFrame()
             self.logs = pd.DataFrame()
     
-
     def livros_mais_populares(self):
+        self.estoque = self.estoque.drop(columns=["Quantidade"])
+
+        self.logs = self.logs.drop(columns=["Motivo", "CPF"])
+        
         mergedData = self.mergeData()
 
         df_emprestimos = mergedData[mergedData["Tipo_de_atividade"] == "Emprestimo"]
@@ -25,8 +28,6 @@ class Relatorios_Repository:
         return livros_mais_emprestados
 
     def mergeData(self):
-        estoque = self.estoque.drop(columns=["Quantidade"])
-        logs = self.logs.drop(columns=["Motivo", "CPF"])
-        mergedData = pd.merge(estoque, logs, on="ISBN", how="left")
+        mergedData = pd.merge(self.estoque, self.logs, on="ISBN", how="left")
 
         return mergedData
