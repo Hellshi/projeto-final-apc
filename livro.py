@@ -20,7 +20,8 @@ class Livro:
 
             self.estoque.adicionar_linha({'ISBN': isbn, 'Nome': produto, 'Quantidade': quantidade, 'Valor': valor})
 
-            print('Livro {produto} adicionado ao estoque')
+            self.logs.log_de_gestao_de_livros(None, isbn, quantidade, 'Inclusão')
+            print(f'Livro {produto} adicionado ao estoque')
 
     def excluir(self):
         isbn = int(input('informe o ISBN: '))
@@ -34,7 +35,7 @@ class Livro:
             else:
                 motivo = input('Informe o motivo da exclusão: ')
                 self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
-                self.logs.log_exclusao(motivo, isbn, quantidade)
+                self.logs.log_de_gestao_de_livros(motivo, isbn, quantidade, 'Exclusão')
                 print(f'Quantidade de {book["Nome"]} atualizada para {book["Quantidade"] - quantidade}')
         else:
             print('Livro nao cadastrado')
