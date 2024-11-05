@@ -7,10 +7,10 @@ class Logs:
     
 
     def log_emprestimo(self, cpf, isbn, quantidade):
-        self.logs.adicionar_linha({'cpf': cpf, 'isbn': isbn, 'quantidade': quantidade, 'tipo_de_atividade': 'Emprestimo'})
+        self.logs.adicionar_linha({'CPF': cpf, 'ISBN': isbn, 'Quantidade': quantidade, 'Tipo_de_atividade': 'Emprestimo'})
     
     def log_devolucao(self, cpf, isbn, quantidade):
-        self.logs.adicionar_linha({'cpf': cpf, 'isbn': isbn, 'quantidade': quantidade, 'sexo_de_atividade': 'Devolução'})
+        self.logs.adicionar_linha({'CPF': cpf, 'ISBN': isbn, 'Quantidade': quantidade, 'Tipo_de_atividade': 'Devolução'})
     
-    def log_exclusao(self, motivo, isbn):
-        self.logs.adicionar_linha({'motivo': motivo, 'isbn': isbn})
+    def log_exclusao(self, motivo, isbn, quantidade):
+        self.logs.adicionar_linha({'Motivo': motivo, 'ISBN': isbn, 'Quantidade': quantidade, 'Tipo_de_atividade': 'Exclusão'})

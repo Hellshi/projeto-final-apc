@@ -1,10 +1,14 @@
 import pandas as pd
+from pandas.errors import EmptyDataError
 
 class GerenciadorDeArquivos:
     def __init__(self, nome_arquivo):
-        self.arquivo = pd.read_csv(nome_arquivo)
-        self.path = nome_arquivo
-        self.atualizar_arquivo()
+        try:
+            self.arquivo = pd.read_csv(nome_arquivo, skip_blank_lines=True, header=0)
+            self.path = nome_arquivo
+        except EmptyDataError:
+            self.arquivo = pd.DataFrame()
+            self.path = nome_arquivo
 
     def atualizar_arquivo(self):
         self.arquivo.to_csv(self.path, index=False)

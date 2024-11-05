@@ -1,7 +1,9 @@
 from gerenciador_de_arquivos import GerenciadorDeArquivos
+from logs import Logs
 class Livro:
     def __init__(self):
         self.estoque = GerenciadorDeArquivos('estoque/estoque.csv')
+        self.logs = Logs()
 
     def inserir(self):
         isbn = int(input('informe o ISBN: '))
@@ -30,7 +32,10 @@ class Livro:
                 print('Quantidade maior que a existente, operação abortada')
                 return
             else:
-                self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('isbn', isbn)['quantidade'] -  quantidade)
+                motivo = input('Informe o motivo da exclusão: ')
+                self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
+                self.logs.log_exclusao(motivo, isbn, quantidade)
+                print(f'Quantidade de {book["Nome"]} atualizada para {book["Quantidade"] - quantidade}')
         else:
             print('Livro nao cadastrado')
     
