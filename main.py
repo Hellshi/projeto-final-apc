@@ -44,7 +44,8 @@ class Main:
     def relatorios(self):
         options = {
             "Livros Mais Populares": self.relatorio.livros_mais_populares,
-            "Livros deletados": self.relatorio.exemplares_excluidos
+            "Livros deletados": self.relatorio.exemplares_excluidos,
+            "Estoque de Livros": self.relatorio.estoque
         }
         selected_option = inquirer.select(
             message="Escolha uma opção:",

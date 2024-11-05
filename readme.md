@@ -22,7 +22,11 @@ Motivação: Um projeto simples para gestão da sua biblioteca via terminal, ele
 - Devolução:
     - Ao devolver um livro deve ser informado o código ISBN dele e o livro deve voltar imediatamente ao estoque
 - Relatórios: 
+Os relatórios podem ser encontrados na raíz do projeto e tem nomes correspondentes ao seu tipo. Eles tem por objetivo facilitar a tomada de decisões logisticas para o sucesso da livraria
     - O usuário pode vizualizar relatórios de:
-        - Empréstimos de livros
+        - Livros Mais populares:
+            - definido pela quantidade de empréstimos daquele livro
         - Livros deletados
+            - Mostra o motivo da remoção de uma quantidade x de exemplares do livro
         - Estoque de livros
+            - Mostra o estoque de cada livro cadastrado no sistema

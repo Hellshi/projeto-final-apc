@@ -14,3 +14,7 @@ class Relatorios:
     def exemplares_excluidos(self):
         results = self.relatorioRepository.exemplares_excluidos()
         results.to_csv("exemplares_excluidos.csv", index=False)
+    
+    def estoque(self):
+        results = self.relatorioRepository.relatorio_de_estoque()
+        results.to_csv("estoque.csv", index=False)

@@ -42,6 +42,9 @@ class Relatorios_Repository:
 
         return exemplares_excluidos
 
+    def relatorio_de_estoque(self):
+        return self.estoque
+
     def mergeData(self):
         mergedData = pd.merge(self.estoque, self.logs, on="ISBN", how="left")
 
