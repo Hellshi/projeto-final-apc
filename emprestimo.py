@@ -1,7 +1,5 @@
-from base_repository import BaseRepository
 from livro_repository import LivroRepository
 from logs import Logs
-
 
 class Emprestimo:
     def __init__(self):
@@ -29,8 +27,18 @@ class Emprestimo:
             print('Livro nao encontrado')
 
     def devolver(self):
-        isbn = input('informe o ISBN do livro: ')
+        isbn = int(input('informe o ISBN do livro:'))
 
-        quantidade = int(input('informe a quantidade de livros: '))
+        book, index = self.livroRepository.buscar_livro(isbn)
 
-        self.estoque.atualizar_livro(isbn, 'quantidade', self.livroRepository.buscar_em_arquivo('isbn', isbn)['quantidade'] + quantidade)
+        if(book != None):
+            cpf = input('informe o CPF para a devolução: ')
+            quantidade = int(input('informe a quantidade de exemplares a serem devolvidos: '))
+
+            self.livroRepository.atualizar({'index': index, 'Quantidade': book['Quantidade'] + quantidade})
+
+            self.logs.log_devolucao(cpf, isbn, quantidade)
+
+            print('Livro devolvido com sucesso')
+        else:
+            print('Livro nao encontrado')
