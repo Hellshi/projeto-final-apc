@@ -1,9 +1,9 @@
-from gerenciador_de_arquivos import GerenciadorDeArquivos
+from base_repository import BaseRepository
 
 class Logs:
     def __init__(self):
-        self.logs = GerenciadorDeArquivos('relatorios/logs.csv')
-        self.relatorios = GerenciadorDeArquivos('relatorios/relatorio.csv')
+        self.logs = BaseRepository('relatorios/logs.csv')
+        self.relatorios = BaseRepository('relatorios/relatorio.csv')
     
 
     def log_emprestimo(self, cpf, isbn, quantidade):

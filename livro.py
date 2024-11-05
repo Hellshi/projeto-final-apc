@@ -1,27 +1,37 @@
-from gerenciador_de_arquivos import GerenciadorDeArquivos
+from base_repository import BaseRepository
+from livro_repository import LivroRepository
 from logs import Logs
 class Livro:
     def __init__(self):
-        self.estoque = GerenciadorDeArquivos('estoque/estoque.csv')
+        self.livroRepository = LivroRepository()
         self.logs = Logs()
+        self.livro = {
+            'ISBN': None,
+            'Nome': None,
+            'Quantidade': None,
+            'Valor': None,
+            'index': None
+        }
 
     def inserir(self):
         isbn = int(input('informe o ISBN: '))
-        book, index = self.buscar_livro(isbn)
+        book, index = self.livroRepository.buscar_livro(isbn)
+        self.livro = {'ISBN': isbn, 'Nome': None, 'Quantidade': None, 'Valor': None, 'index': index}
 
         if(book != None):
-            quantidade = int(input(f"O livro {book['Nome']} já está cadastrado no estoque com {book['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
-            self.estoque.atualizar_livro(index, 'Quantidade', self.estoque.buscar_em_arquivo('ISBN', isbn)['Quantidade'] + quantidade)
-            print(f'Quantidade de {book["Nome"]} atualizada para {book["Quantidade"] + quantidade}')
+            quantidade = int(input(f"O livro {self.livro['Nome']} já está cadastrado no estoque com {self.livro['Quantidade']} itens. Informe a quantidade a ser adicionada: "))
+            self.livro['Quantidade'] += quantidade
+            self.livroRepository.atualizar(self.livro)
+            print(f'Quantidade de {self.livro["Nome"]} atualizada para {self.livro["Quantidade"]}')
         else:
-            produto = input('Informe o nome do livro: ')
-            valor = float(input('Informe o valor do Livro: '))
-            quantidade = int(input('Informe a quantidade: '))
+            self.livro['Nome'] = input('Informe o nome do livro: ')
+            self.livro['Valor'] = float(input('Informe o valor do Livro: '))
+            self.livro['Quantidade'] = int(input('Informe a quantidade: '))
 
-            self.estoque.adicionar_linha({'ISBN': isbn, 'Nome': produto, 'Quantidade': quantidade, 'Valor': valor})
+            self.livroRepository.inserir(self.livro)
 
-            self.logs.log_de_gestao_de_livros(None, isbn, quantidade, 'Inclusão')
-            print(f'Livro {produto} adicionado ao estoque')
+        self.logs.log_de_gestao_de_livros(None, self.livro['ISBN'], self.livro['Quantidade'], 'Inclusão')
+        print(f'Livro {self.livro["Nome"]} adicionado ao estoque')
 
     def excluir(self):
         isbn = int(input('informe o ISBN: '))

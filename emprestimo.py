@@ -1,10 +1,10 @@
-from gerenciador_de_arquivos import GerenciadorDeArquivos
+from base_repository import BaseRepository
 from logs import Logs
 
 
 class Emprestimo:
     def __init__(self):
-        self.estoque = GerenciadorDeArquivos('estoque/estoque.csv')
+        self.estoque = BaseRepository('estoque/estoque.csv')
         self.logs = Logs()
     def emprestar(self):
         cpf = input('informe o CPF do solicitante: ')

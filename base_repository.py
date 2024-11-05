@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas.errors import EmptyDataError
 
-class GerenciadorDeArquivos:
+class BaseRepository:
     def __init__(self, nome_arquivo):
         try:
             self.arquivo = pd.read_csv(nome_arquivo, skip_blank_lines=True, header=0)
