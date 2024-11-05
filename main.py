@@ -12,7 +12,7 @@ class Main:
         bookOptions = {
             "Inseririr Livro": self.livro.inserir,
             "Excluir Livro": self.livro.excluir,
-            "Buscar Livro": self.livro.buscar_livro
+            "Buscar Livro": self.livro.consultar
         }
         selected_option = inquirer.select(
             message="Escolha uma opção:",

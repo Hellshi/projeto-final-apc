@@ -21,9 +21,9 @@ class Livro:
             print('Livro {produto} adicionado ao estoque')
 
     def excluir(self):
-        isbn = input('informe o ISBN: ')
+        isbn = int(input('informe o ISBN: '))
         book, index = self.buscar_livro(isbn)
-
+        
         if(book != None):
             quantidade = int(input('Informe a quantidade a ser removida: '))
             if(quantidade > book['Quantidade']):
@@ -36,7 +36,18 @@ class Livro:
     
     def buscar_livro(self, isbn):
         item = self.estoque.buscar_em_arquivo('ISBN', isbn)
+
         if len(item) > 0:
             return [item.iloc[0].to_dict(), item.index[0]]
         else:
             return [None, None]
+        
+    def consultar(self):
+        isbn = int(input('informe o ISBN: '))
+        item = self.estoque.buscar_em_arquivo('ISBN', isbn)
+        book = item.iloc[0]
+
+        if(len(book) != None):
+            print(book)
+        else:
+            print('Livro nao cadastrado')
