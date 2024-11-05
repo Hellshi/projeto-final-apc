@@ -7,8 +7,8 @@ Motivação: Um projeto simples para gestão da sua biblioteca via terminal, ele
 
     | Nome               | Valor  | ISBN          | Quantidade |
     |--------------------|--------|---------------|------------|
-    | A Metamorfose      | 29.90  | 978-3-16-148410-0 | 15         |
-    | O Senhor dos Anéis | 59.90  | 978-0-06-202402-2 | 8          |
+    | A Metamorfose      | 29.90  | 9783161484100 | 15         |
+    | O Senhor dos Anéis | 59.90  | 9780062024022 | 8          |
     
     - Os livros podem ser adicionados ao estoque em lotes através do campo "quantidade";
     

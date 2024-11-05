@@ -1,10 +1,10 @@
-from base_repository import BaseRepository
+
+from app.repository.base_repository import BaseRepository
+
 
 class Logs:
     def __init__(self):
-        self.logs = BaseRepository('relatorios/logs.csv')
-        self.relatorios = BaseRepository('relatorios/relatorio.csv')
-    
+        self.logs = BaseRepository('app/repository/relatorios/logs.csv')    
 
     def log_emprestimo(self, cpf, isbn, quantidade):
         self.logs.adicionar_linha({'CPF': cpf, 'ISBN': isbn, 'Quantidade': quantidade, 'Tipo_de_atividade': 'Emprestimo'})

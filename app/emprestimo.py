@@ -1,5 +1,5 @@
-from livro_repository import LivroRepository
-from logs import Logs
+from app.repository.livro_repository import LivroRepository
+from app.repository.logs import Logs
 
 class Emprestimo:
     def __init__(self):

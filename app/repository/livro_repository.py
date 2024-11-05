@@ -1,9 +1,9 @@
-from base_repository import BaseRepository
 
+from app.repository.base_repository import BaseRepository
 
 class LivroRepository:
     def __init__(self):
-        self.baseRepository = BaseRepository('estoque/estoque.csv')
+        self.baseRepository = BaseRepository('app/repository/estoque/estoque.csv')
     
     def inserir(self, livro):
         print(livro)

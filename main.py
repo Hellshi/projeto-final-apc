@@ -1,6 +1,8 @@
 from InquirerPy import inquirer
-from emprestimo import Emprestimo
-from livro import Livro
+
+from app.emprestimo import Emprestimo
+from app.livro import Livro
+
 
 options = ["Emprestimo", "Gestão de Livros", "Relatórios", "Sair"]
 gestao_de_livros_options = ["Inseririr Livro", "Excluir Livro", "Buscar Livro", "Sair"]
@@ -45,7 +47,6 @@ while True:
     ).execute()
 
     if selected_option == "Gestão de Livros":
-        print("Entrou")
         Main().gestao_de_livros()
     elif selected_option == "Emprestimo":
         Main().emprestimo()
