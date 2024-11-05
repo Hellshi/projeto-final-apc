@@ -13,7 +13,7 @@ class LivroRepository(BaseRepository):
         self.atualizar_livro(livro['index'], 'Quantidade', livro['Quantidade'])
 
     def remover(self, livro):
-        self.atualizar_livro(livro['index'], 'Quantidade', self.baseRepository.buscar_em_arquivo('ISBN', livro['ISBN'])['Quantidade'] - livro['Quantidade'])
+        self.atualizar_livro(livro['index'], 'Quantidade', self.buscar_em_arquivo('ISBN', livro['ISBN'])['Quantidade'] - livro['Quantidade'])
 
     def buscar_livro(self, isbn):
         item = self.buscar_em_arquivo('ISBN', isbn)

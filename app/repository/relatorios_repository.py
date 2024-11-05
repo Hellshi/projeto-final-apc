@@ -32,7 +32,6 @@ class Relatorios_Repository:
 
         self.logs = self.logs.drop(columns=["CPF"])
         mergedData = self.mergeData()
-        print(mergedData)
 
         df_exclusao = mergedData[mergedData["Tipo_de_atividade"] == "Exclusão"]
 

@@ -1,2 +1,6 @@
 ISBN,CPF,Quantidade,Tipo_de_atividade,Motivo
-
+123,,1,Inclusão,
+123,,4,Inclusão,
+123,,3,Exclusão,Perda
+123,8766624401.0,1,Emprestimo,
+123,08766624401,1,Devolução,
