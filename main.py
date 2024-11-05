@@ -62,7 +62,7 @@ class Main:
 
 while True:
     selected_option = inquirer.select(
-        message="Escolha uma opção:",
+        message="Bem-vindo ao literatura. O que deseja fazer hoje?:",
         choices=options
     ).execute()
 

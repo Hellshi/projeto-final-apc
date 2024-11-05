@@ -1,7 +1,6 @@
 
 
 from app.repository.relatorios_repository import Relatorios_Repository
-import pandas as pd
 
 class Relatorios:
     def __init__(self):

@@ -1,6 +1,13 @@
 # Literatura: 
 Motivação: Um projeto simples para gestão da sua biblioteca via terminal, ele utilizará conceitos básicos de python para desenvolver um sistema de acervo, empréstimo e compras de livros para uma biblioteca qualquer.
 
+### Dependências do Projeto:
+- pandas
+- inquirerPy
+- openpyxl
+
+[Slide](https://docs.google.com/presentation/d/1cDxPRtD__nOhZxZq4jcyOx6O55AVTfpwlqXQCAdJuIU/edit?usp=sharing)
+
 ## Regras de Negócio:
 - Adição de livros:
     - Para que um livro seja adicionado ele deve possuir as seguintes caracteristicas: 
