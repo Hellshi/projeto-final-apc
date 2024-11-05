@@ -42,13 +42,16 @@ class Main:
         emprestimo[selected_option]()
     
     def relatorios(self):
+        options = {
+            "Livros Mais Populares": self.relatorio.livros_mais_populares,
+            "Livros deletados": self.relatorio.exemplares_excluidos
+        }
         selected_option = inquirer.select(
             message="Escolha uma opção:",
             choices=relatorios_options
         ).execute()
 
-        if selected_option == "Livros Mais Populares":
-            self.relatorio.livros_mais_populares()
+        options[selected_option]()
     
     def exit(self):
         print("Saindo...")

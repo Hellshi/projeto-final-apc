@@ -26,6 +26,21 @@ class Relatorios_Repository:
         livros_mais_emprestados = livros_mais_emprestados.sort_values(ascending=False).reset_index()
 
         return livros_mais_emprestados
+    
+    def exemplares_excluidos(self):
+        self.estoque = self.estoque.drop(columns=["Quantidade"])
+
+        self.logs = self.logs.drop(columns=["CPF"])
+        mergedData = self.mergeData()
+        print(mergedData)
+
+        df_exclusao = mergedData[mergedData["Tipo_de_atividade"] == "Exclusão"]
+
+        exemplares_excluidos = df_exclusao.groupby(["ISBN", "Nome", "Motivo"])["Quantidade"].sum()
+
+        exemplares_excluidos = exemplares_excluidos.sort_values(ascending=False).reset_index()
+
+        return exemplares_excluidos
 
     def mergeData(self):
         mergedData = pd.merge(self.estoque, self.logs, on="ISBN", how="left")

@@ -9,5 +9,8 @@ class Relatorios:
     
     def livros_mais_populares(self):
         results = self.relatorioRepository.livros_mais_populares()
-        print(results)
         results.to_csv("livros_mais_emprestados.csv", index=False)
+    
+    def exemplares_excluidos(self):
+        results = self.relatorioRepository.exemplares_excluidos()
+        results.to_csv("exemplares_excluidos.csv", index=False)
